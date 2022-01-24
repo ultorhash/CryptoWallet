@@ -1,13 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { Navbar } from './components/navbar/navbar';
+import { Route } from 'react-router-dom';
+import { About } from './components/about/about';
+import { Home } from './components/home/home';
+import { BrowserRouter, Routes } from 'react-router-dom';
 
-function App() {
+export const App: FC = () => {
   return (
-    <div className="App">
-      Works
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
