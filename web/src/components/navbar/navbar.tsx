@@ -1,10 +1,27 @@
 import React, { FC } from "react";
-import { NavbarContainer } from "./styled-navbar";
+import {
+  NavbarContainer,
+  NavMenu,
+  NavbarLink
+} from "./styled-navbar";
+import { navbarLinks } from "./navbar.data";
+import { INavbarLink } from "./navbar.interface";
 
 export const Navbar: FC = () => {
   return (
     <NavbarContainer>
-      <p>Navbar</p>
+      <NavMenu>
+        {navbarLinks.map((link: INavbarLink, index: number) => {
+          return (
+            <NavbarLink
+              key={index}
+              to={link.path}
+            >
+              {link.name}
+            </NavbarLink>
+          );
+        })}
+      </NavMenu>
     </NavbarContainer>
   )
 }
