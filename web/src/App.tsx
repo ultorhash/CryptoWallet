@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Route } from 'react-router-dom';
-import { About } from './components/about/about';
 import { Home } from './components/home/home';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
+import { Transactions } from './components/transactions/transactions';
 
 export const App: FC = () => {
   return (
@@ -12,8 +12,8 @@ export const App: FC = () => {
       <Navbar />
       <Routes>
         <Route
-          path="/about"
-          element={<About />} 
+          path="/transactions"
+          element={<Transactions />} 
         />
         <Route
           path="/"

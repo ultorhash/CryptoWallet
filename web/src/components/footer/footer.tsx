@@ -11,8 +11,6 @@ import {
   InfoBoxContent
 } from "./styled-footer";
 import { footerBoxesData } from "./footer.data";
-import { IFooterBox } from './footer.interface';
-import { Link } from "react-router-dom";
 import { FooterIconStyle } from './styled-footer';
 
 export const Footer: FC = () => {

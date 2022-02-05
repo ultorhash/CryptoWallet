@@ -10,5 +10,10 @@ export enum Colors {
   Gray600 = '#545454',
   Gray700 = '#3F3F3F',
   Gray800 = '#2C2C2C',
-  Gray900 = '#191919'
+  Gray900 = '#191919',
+
+  Orange300 = '#FCB061',
+  Orange500 = '#FC8C19',
+  Orange700 = '#E97702',
+  Orange900 = '#FD6A02'
 }
