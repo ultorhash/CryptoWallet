@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import {
   FormButtonStyle,
   FormContainer,
@@ -21,8 +21,14 @@ import {
 } from "@mui/material";
 import { BiWallet, BiSend } from 'react-icons/bi';
 import { FormButtonIconStyle } from './styled-send-form';
+import { TransactionContext } from '../../../context/transaction.context';
 
 export const SendForm: FC = () => {
+
+  const {
+    currentAccount, formData,
+    setFormData, connectWallet, sendTransaction
+  } = useContext(TransactionContext);
 
   const formSchema = yup.object().shape(formInputSchema);
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
@@ -31,7 +37,17 @@ export const SendForm: FC = () => {
   });
 
   const submit = (data: FieldValues) => {
-    console.log(data);
+    setFormData({
+      addressTo: data.addressTo,
+      amount: data.amount,
+      message: data.message
+    });
+
+    const { addressTo, amount, message } = formData;
+
+    if (!addressTo || !amount || !message) return;
+
+    sendTransaction();
   }
 
   return (
@@ -109,16 +125,16 @@ export const SendForm: FC = () => {
               flexDirection: 'column'
             }}
           >
-            <Button
+            {!currentAccount && (<Button
               style={FormButtonStyle}
               variant="contained"
-              onClick={() => alert("XD")}
+              onClick={connectWallet}
             >
               <Typography>
                 Connect To Wallet
                 <BiWallet style={FormButtonIconStyle}/>
               </Typography>
-            </Button>
+            </Button>)}
             <Button
               style={FormButtonStyle}
               variant="contained"
