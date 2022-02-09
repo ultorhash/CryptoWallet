@@ -4,8 +4,6 @@ import { Colors } from "../../colors/colors";
 
 export const FooterContainer = styled.footer`
   background-color: orange;
-  position: static;
-  bottom: 0;
   width: 100%;
   overflow: hidden;
   background-color: ${Colors.Black};

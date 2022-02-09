@@ -9,4 +9,8 @@ export const navbarLinks: INavbarLink[] = [
     name: 'Transactions',
     path: '/transactions',
   },
+  {
+    name: 'About',
+    path: '/about',
+  },
 ];

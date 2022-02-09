@@ -1,27 +1,45 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   NavbarContainer,
-  NavMenu,
-  NavbarLink
+  MenuLink,
+  Logo,
+  Menu,
+  Hamburger,
+  NavbarIconStyle
 } from "./styled-navbar";
 import { navbarLinks } from "./navbar.data";
 import { INavbarLink } from "./navbar.interface";
+import { IconImgSmall } from "../../global-styles/styled-icons";
+import { FaHamburger } from 'react-icons/fa';
 
 export const Navbar: FC = () => {
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  
   return (
     <NavbarContainer>
-      <NavMenu>
-        {navbarLinks.map((link: INavbarLink, index: number) => {
+      <Logo to="/">
+        Crypto Wallet
+        <IconImgSmall
+          src="./ethereum.svg"
+          alt="metamask"
+        />
+      </Logo>
+      <Hamburger onClick={() => setIsOpen(!isOpen)}>
+        <FaHamburger style={NavbarIconStyle} />    
+      </Hamburger>
+      <Menu isOpen={isOpen}>
+        {navbarLinks.map((item: INavbarLink, index: number) => {
           return (
-            <NavbarLink
+            <MenuLink
               key={index}
-              to={link.path}
+              to={item.path}
             >
-              {link.name}
-            </NavbarLink>
-          );
+              {item.name}
+            </MenuLink>
+          )
         })}
-      </NavMenu>
+      </Menu>
     </NavbarContainer>
   )
 }

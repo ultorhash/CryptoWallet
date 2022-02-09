@@ -1,58 +1,56 @@
 import React, { FC } from "react";
-import { IconImgSmall } from "../../global-styles/styled.icons";
-import { steps } from "./home.data";
+import { cards } from './home.data';
+import { IconImgSmall } from "../../global-styles/styled-icons";
+import { ICardData } from "./home.interface";
 import {
-  BannerWrapper,
   HomeContainer,
-  BannerColumn,
-  ArticleWrapper,
-  StepsWrapper,
-  Step,
-  StepsImageWrapper
+  LogoColumn,
+  WelcomeColumn,
+  BannerWrapper,
+  UsageWrapper,
+  Card,
+  CardTitle,
+  CardNumber,
+  CardContent,
+  GetStarted
 } from './styled-home';
 
 export const Home: FC = () => {
   return (
     <HomeContainer>
       <BannerWrapper>
-        <BannerColumn>
-          <img
-            src="./ethereum.svg"
-            alt="logo"
-          />
-        </BannerColumn>
-        <BannerColumn>
+        <LogoColumn>
+          <img src="ethereum.svg" alt="logo" />
+        </LogoColumn>
+        <WelcomeColumn>
           <h1>Welcome to Crypto Wallet</h1>
-          <p>Manage your ethereum across the blockchain</p>
-          <p>
-            by using MetaMask.
-            <IconImgSmall
-              src="./metamask.svg"
-              alt="metamask"
-            />
-          </p>
-        </BannerColumn>
+          <p>Manage your Ethereum easy way</p>
+          <GetStarted to="/transactions">
+            Get started
+            <IconImgSmall src="metamask.svg" />
+          </GetStarted>
+        </WelcomeColumn>
       </BannerWrapper>
-      <ArticleWrapper>
-        <StepsWrapper>
-          {steps.map((item: any, index: number) => {
-            return (
-              <Step key={index}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                {item.icon}
-              </Step>
-            )
-          })}
-        </StepsWrapper>
-        <StepsImageWrapper>
-          <h2>How it actually works?</h2>
-          <img
-            src="./payment.svg"
-            alt="payment"
-          />
-        </StepsImageWrapper>
-      </ArticleWrapper>
+      <UsageWrapper>
+        {cards.map((card: ICardData, index: number) => {
+          return (
+            <Card
+              key={index}
+              imageUrl={card.imageUrl}
+            >
+              <CardTitle>
+                <h2>{card.title}</h2>
+              </CardTitle>
+              <CardContent>
+                <p>{card.description}</p>
+              </CardContent>
+              <CardNumber>
+                <span>{index + 1}</span>
+              </CardNumber>
+            </Card>
+          )
+        })}
+      </UsageWrapper>
     </HomeContainer>
   )
 }

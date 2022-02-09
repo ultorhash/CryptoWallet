@@ -15,5 +15,15 @@ export enum Colors {
   Orange300 = '#FCB061',
   Orange500 = '#FC8C19',
   Orange700 = '#E97702',
-  Orange900 = '#FD6A02'
+  Orange900 = '#FD6A02',
+
+  Blue100 = '#BCD9EA',
+  Blue200 = '#8BBDD9',
+  Blue300 = '#5BA4CF',
+  Blue400 = '#298FCA',
+  Blue500 = '#0079BF',
+  Blue600 = '#026AA7',
+  Blue700 = '#055A8C',
+  Blue800 = '#094C72',
+  Blue900 = '#0C3953',
 }
