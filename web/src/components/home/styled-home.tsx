@@ -60,17 +60,19 @@ export const GetStarted = styled(Link)`
   border-radius: 10px;
   height: 70px;
   margin-top: 20px;
-  background-color: ${Colors.Blue800};
+  background-color: ${Colors.Gray500};
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${Colors.White};
+  color: ${Colors.Gray900};
+  font-weight: 600;
   font-size: 1.3rem;
   text-decoration: none;
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-in;
 
   &:hover {
-    background-color: ${Colors.Blue700};
+    background-color: ${Colors.Gray300};
+    color: ${Colors.Black};
   }
 `;
 
@@ -126,6 +128,7 @@ export const CardContent = styled.div`
 
   p {
     line-height: 25px;
+    color: ${Colors.Gray900}
   }
 `;
 

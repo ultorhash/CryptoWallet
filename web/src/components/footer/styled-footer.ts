@@ -46,6 +46,12 @@ export const FooterLinkLocal = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  transition: all 0.2s ease-in;
+  margin: 5px 0;
+  
+  &:hover {
+    color: ${Colors.Orange500};
+  }
 `;
 
 export const FooterLinkWebsite = styled.a`
@@ -56,11 +62,17 @@ export const FooterLinkWebsite = styled.a`
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
+  transition: all 0.2s ease-in;
+  margin: 5px 0;
+  
+  &:hover {
+    color: ${Colors.Orange500};
+  }
 `;
 
 export const FooterSummary = styled.div`
   height: 30px;
-  color: ${Colors.Gray300};
+  color: ${Colors.Gray200};
   font-size: 0.8rem;
   display: flex;
   align-items: center;

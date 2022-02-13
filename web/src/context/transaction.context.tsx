@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { env } from '../environment/environment';
 import { ethers } from 'ethers';
 import { ITransactionContext } from "../interfaces/transaction-context.interface";
+import { ITransaction } from '../interfaces/transaction.interface';
 
 export const TransactionContext = React.createContext<ITransactionContext>({
   currentAccount: '',
@@ -10,6 +11,7 @@ export const TransactionContext = React.createContext<ITransactionContext>({
     amount: 0,
     message: ''
   },
+  transactions: [],
   setFormData: () => {},
   connectWallet: () => {},
   sendTransaction: () => {}
@@ -27,9 +29,9 @@ const getEthereumContract = (): ethers.Contract => {
   return transactionContract;
 }
 
-export const TransactionProvider = ({ children }: any) => {
+export const TransactionProvider = ({ children }: any): JSX.Element => {
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [currentAccount, setCurrentAccount] = useState<string>('');
   const [formData, setFormData] = useState({
     addressTo: '',
@@ -37,7 +39,14 @@ export const TransactionProvider = ({ children }: any) => {
     message: ''
   });
 
-  const checkWalletConnection = async () => {
+  const getTransactions = async (): Promise<void> => {
+    const transactionContract = getEthereumContract();
+    const allTransactions = await transactionContract.getAllTransactions();
+    
+    setTransactions(allTransactions);
+  }
+
+  const checkWalletConnection = async (): Promise<void> => {
     try {
       if (!ethereum) return alert('Please install metamask');
       const accounts = await ethereum.request({ method: env.ethMethods.accounts });
@@ -82,9 +91,9 @@ export const TransactionProvider = ({ children }: any) => {
       });
 
       const transactionHash = await transactionContract.addToBlockchain(addressTo, parseAmount, message);
-      setIsLoading(true);
+      console.log(`Loading: ${transactionHash.hash}`);
       await transactionHash.wait();
-      setIsLoading(false);
+      console.log(`Success: ${transactionHash.hash}`);
 
       const transactionCount = await transactionContract.getTransactionCount();
 
@@ -96,13 +105,18 @@ export const TransactionProvider = ({ children }: any) => {
 
   useEffect(() => {
     checkWalletConnection();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
 
   return (
     <TransactionContext.Provider
       value={{
         currentAccount,
         formData,
+        transactions,
         setFormData,
         connectWallet,
         sendTransaction

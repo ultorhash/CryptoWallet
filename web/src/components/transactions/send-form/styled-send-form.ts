@@ -1,15 +1,16 @@
 import { InputLabelProps } from "@mui/material";
-import { borderRadius } from "@mui/system";
 import styled, { CSSProperties } from "styled-components";
 import { Colors } from "../../../colors/colors";
 
 export const FormContainer = styled.div`
-  width: 700px;
-  height: auto;
+  width: 100%;
+  height: 100%;
 `;
 
 export const FormStyle: CSSProperties = {
-  backgroundColor: Colors.Black
+  backgroundColor: Colors.Black,
+  borderRadius: '0',
+  height: '100%'
 }
 
 export const FormInputStyle: CSSProperties = {

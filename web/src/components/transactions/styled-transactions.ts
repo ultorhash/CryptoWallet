@@ -10,22 +10,45 @@ export const TransactionsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${Colors.Gray700};
+  background-color: ${Colors.Gray900};
 `;
 
 export const TransactionPanel = styled(FlexContainer)`
-  margin: 20px 0;
-
+  height: 500px;
+  padding: 10px;
+  
   @media (max-width: 768px) {
+    height: auto;
     flex-direction: column;
   }
 `;
 
 export const TransactionBox = styled(HalfBox)`
-  border: 2px solid green;
-
   @media (max-width: 768px) {
     width: 100%;
+  }
+`;
+
+export const TransactionsHistory = styled.ul`
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll;
+  padding: 0 15px;
+
+  &::-webkit-scrollbar-track {
+    background-color: ${Colors.Gray500};
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${Colors.Gray800};
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
   }
 `;
 
