@@ -1,5 +1,7 @@
 import React, { FC, useContext } from "react";
 import {
+  CardImageWrapper,
+  FlowCard,
   FlowInfo,
   TransactionBox,
   TransactionPanel,
@@ -10,6 +12,8 @@ import { SendForm } from "./send-form/send-form";
 import { TransactionContext } from "../../context/transaction.context";
 import { ITransaction } from '../../interfaces/transaction.interface';
 import { TransactionCard } from "./transaction-card/transaction-card";
+import { flowList } from "./transactions.data";
+import { IFlowData } from './transactions.interface';
 
 export const Transactions: FC = () => {
 
@@ -33,7 +37,7 @@ export const Transactions: FC = () => {
                 <TransactionCard
                   {...item}
                   key={index}
-                  isEven={index % 2 == 0}
+                  isEven={index % 2 === 0}
                 />
               )
             })}
@@ -41,7 +45,20 @@ export const Transactions: FC = () => {
         </TransactionBox>
       </TransactionPanel>
       <FlowInfo>
-        
+        {flowList.map((item: IFlowData, index: number) => {
+          return (
+            <FlowCard key={index}>
+              <CardImageWrapper>
+                <img
+                  src={item.imageUrl}
+                  alt={item.imageAlt}
+                />
+              </CardImageWrapper>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </FlowCard>
+          )
+        })}
       </FlowInfo>
     </TransactionsContainer>
   )

@@ -10,10 +10,16 @@ import {
   InfoBox,
   InfoBoxContent
 } from "./styled-footer";
+import {
+  IFooterData,
+  ILink,
+  IPartner,
+  ISocial
+} from "./footer.interface";
 import { footerBoxesData } from "./footer.data";
 import { FooterIconStyle } from './styled-footer';
 
-export const Footer: FC = () => {
+export const Footer: FC = (): JSX.Element => {
 
   const checkUrl = (url: string): boolean => {
     if (!url) {
@@ -26,17 +32,18 @@ export const Footer: FC = () => {
   return (
     <FooterContainer>
       <FooterBoxes>
-        {footerBoxesData.map((box: any, index: number) => {
+        {footerBoxesData.map((box: IFooterData, index: number) => {
           return (
             <InfoBox key={index}>
               <h3>{box.title}</h3>
               <InfoBoxContent>
-                {box.partners?.map((item: any, index: number) => {
+                {box.partners?.map((item: IPartner, index: number) => {
                   return (
                     <FooterPartnerWrapper key={index}>
                       <img
                         style={FooterIconStyle}
-                        src={item.logo}
+                        src={item.logoUrl}
+                        alt={item.logoAlt}
                       />
                       <p key={index}>{item.name}</p>
                     </FooterPartnerWrapper>
@@ -44,11 +51,13 @@ export const Footer: FC = () => {
                 })}
               </InfoBoxContent>
               <InfoBoxContent>
-                {box.socials?.map((item: any, index: number) => {
+                {box.socials?.map((item: ISocial, index: number) => {
                   return (
                     <FooterSocial
                       key={index}
                       href={item.to}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {item.icon}
                     </FooterSocial>
@@ -56,7 +65,7 @@ export const Footer: FC = () => {
                 })}
               </InfoBoxContent>
               <InfoBoxContent>
-                {box.data?.map((item: any, index: number) => {
+                {box.links?.map((item: ILink, index: number) => {
                   if (checkUrl(item.to)) {
                     return (
                       <FooterLinkLocal

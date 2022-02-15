@@ -15,7 +15,6 @@ import {
   RiUserSharedLine,
   RiUserReceivedLine
 } from 'react-icons/ri';
-import { BigNumber } from "ethers";
 import moment from "moment";
 
 export const TransactionCard: FC<ITransaction> = (props) => {
@@ -29,22 +28,30 @@ export const TransactionCard: FC<ITransaction> = (props) => {
     amount
   } = props;
 
+  const persons: string[] = [sender, receiver];
   const formattedDate = moment.unix(timestamp.toNumber()).toString();
-
   const [detailsOpen, setDetailsOpen] = useState<boolean>(false);
+
+  const copyToClipboard = async (text: string): Promise<void> => {
+    await navigator.clipboard.writeText(text);
+  }
 
   return (
     <TransactionCardComponent isEven={isEven}>
       <BasicData>
         <Addresses>
-          <Address>
-            <RiUserSharedLine style={PersonIconStyle}/>
-            <p>{sender}</p>
-          </Address>
-          <Address>
-            <RiUserReceivedLine style={PersonIconStyle}/>
-            <p>{receiver}</p>
-          </Address>
+          {persons.map((person: string, index: number) => {
+            return (
+              <Address key={index}>
+                {index % 2 === 0
+                  ? (<RiUserSharedLine style={PersonIconStyle} />)
+                  : (<RiUserReceivedLine style={PersonIconStyle} />)}
+                <button onClick={() => copyToClipboard(person)}>
+                  <p>{person}</p>
+                </button>
+              </Address>
+            )
+          })}
         </Addresses>
       </BasicData>
       <DetailsButton onClick={() => setDetailsOpen(!detailsOpen)}>
@@ -54,13 +61,11 @@ export const TransactionCard: FC<ITransaction> = (props) => {
           <BsArrowDownShort style={DetailsIconStyle}/>
         )}
       </DetailsButton>
-      {detailsOpen && (
-        <Details>
-          <p>Message: <span>{message}</span></p>
-          <p>Amount: <span>{amount._hex}</span></p>
-          <p>Time: <span>{formattedDate}</span></p>
-        </Details>
-      )}
+      <Details isOpen={detailsOpen}>
+        <p>Message: <span>{message}</span></p>
+        <p>Amount: <span>{amount._hex}</span></p>
+        <p>Time: <span>{formattedDate}</span></p>
+      </Details>
     </TransactionCardComponent>
   )
 }

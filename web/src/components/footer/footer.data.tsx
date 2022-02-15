@@ -1,36 +1,63 @@
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import { FooterIconStyle } from './styled-footer';
+import { IFooterData } from './footer.interface';
 
-export const footerBoxesData: any[] = [
+export const footerBoxesData: IFooterData[] = [
   {
     title: "Partners",
     partners: [
       {
-        logo: './metamask.svg',
-        name: 'MetaMask'
+        name: 'MetaMask',
+        logoUrl: './metamask.svg',
+        logoAlt: 'metamask'
       },
       {
-        logo: './blockchain.svg',
-        name: 'Blockchain'
+        name: 'Blockchain',
+        logoUrl: './blockchain.svg',
+        logoAlt: 'blockchain',
       }
     ]
   },
   {
     title: "Contact",
     socials: [
-      { icon: <AiFillGithub style={FooterIconStyle} />, to: "https://github.com/ultorhash/ultorhash" },
-      { icon: <AiFillLinkedin style={FooterIconStyle} />, to: "https://www.linkedin.com" }
+      {
+        icon: <AiFillGithub style={FooterIconStyle} />,
+        to: 'https://github.com/ultorhash/ultorhash'
+      },
+      {
+        icon: <AiFillLinkedin style={FooterIconStyle} />,
+        to: 'https://www.linkedin.com/in/szymon-rajski-73177a21a/'
+      }
     ]
   },
   {
     title: "Links",
-    data: [
-      { text: "Home", to: "/" },
-      { text: "MetaMask", to: "https://metamask.io" },
-      { text: "About", to: "/about" },
-      { text: "Blockchain", to: "https://en.wikipedia.org/wiki/Blockchain" },
-      { text: "Transactions", to: "/transactions" },
-      { text: "Ethereum", to: "https://en.wikipedia.org/wiki/Ethereum" },
+    links: [
+      {
+        text: "Home",
+        to: "/"
+      },
+      {
+        text: "MetaMask",
+        to: "https://metamask.io"
+      },
+      {
+        text: "About",
+        to: "/about"
+      },
+      {
+        text: "Blockchain",
+        to: "https://en.wikipedia.org/wiki/Blockchain"
+      },
+      {
+        text: "Transactions",
+        to: "/transactions"
+      },
+      { 
+        text: "Ethereum",
+        to: "https://en.wikipedia.org/wiki/Ethereum"
+      },
     ]
   }
 ];

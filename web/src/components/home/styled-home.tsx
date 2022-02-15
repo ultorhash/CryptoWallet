@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled, { CSSProperties } from "styled-components";
+import styled from "styled-components";
 import { Colors } from "../../colors/colors";
 import { FlexContainer, HalfBox } from "../../global-styles/styled-shared";
 import { ICardProps } from "./home.interface";

@@ -95,7 +95,7 @@ export const TransactionProvider = ({ children }: any): JSX.Element => {
       await transactionHash.wait();
       console.log(`Success: ${transactionHash.hash}`);
 
-      const transactionCount = await transactionContract.getTransactionCount();
+      //const transactionCount = await transactionContract.getTransactionCount();
 
     } catch (err) {
       console.log(err);

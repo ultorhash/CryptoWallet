@@ -1,6 +1,6 @@
 import styled, { CSSProperties } from "styled-components";
 import { Colors } from "../../../colors/colors";
-import { ITransactionCardProps } from './transaction-card.interface';
+import { ITransactionCardProps, ITransactionDetailsProps } from './transaction-card.interface';
 
 export const TransactionCardComponent = styled.li<ITransactionCardProps>`
   width: 100%;
@@ -9,7 +9,7 @@ export const TransactionCardComponent = styled.li<ITransactionCardProps>`
   background-image: linear-gradient(to right, ${Colors.Gray700}, ${Colors.Gray800});
   position: relative;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   list-style: none;
 
   &:last-child {
@@ -39,7 +39,14 @@ export const Address = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin: 4px;
-  width: 85%;
+
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    width: 75%;
+    text-align: left;
+  }
 
   p {
     overflow: hidden;
@@ -60,16 +67,19 @@ export const DetailsButton = styled.button`
   border-radius: 5px;
   border: none;
   transition: all 0.2s ease-in;
+  z-index: 10;
 
   &:hover {
     background-color: ${Colors.Orange700};
   }
 `;
 
-export const Details = styled.div`
+export const Details = styled.div<ITransactionDetailsProps>`
+  display: ${props => props.isOpen ? 'block' : 'none'};
   width: 100%;
   height: auto;
   padding: 10px;
+  transition: height 1s linear;
 
   p {
     line-height: 25px;
@@ -80,12 +90,28 @@ export const Details = styled.div`
   span {
     color: ${Colors.White};
     font-weight: 600;
+    font-size: 0.9rem;
   }
+`;
+
+export const ClipboardButton = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${Colors.Gray400};
+  margin: 0 10px;
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 export const DetailsIconStyle: CSSProperties = {
   width: '100%',
   height: '100%'
+}
+
+export const CopyIconStyle: CSSProperties = {
+  width: '15px',
+  height: '15px'
 }
 
 export const PersonIconStyle: CSSProperties = {
